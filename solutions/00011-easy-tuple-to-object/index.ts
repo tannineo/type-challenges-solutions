@@ -30,6 +30,7 @@ type TupleToObject<T extends readonly PropertyKey[]> = {
 const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const
 const tupleNumber = [1, 2, 3, 4] as const
 const tupleMix = [1, '2', 3, '4'] as const
+const tuplEmpty = [] as const
 
 type cases = [
   Expect<
@@ -47,6 +48,7 @@ type cases = [
   Expect<
     Equal<TupleToObject<typeof tupleMix>, { 1: 1; '2': '2'; 3: 3; '4': '4' }>
   >,
+  Expect<Equal<TupleToObject<typeof tuplEmpty>, {}>>,
 ]
 
 // @ts-expect-error
